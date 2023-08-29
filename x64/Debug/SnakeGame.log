@@ -1,0 +1,4 @@
+﻿  Food.cpp
+D:\CS435\SnakeGame\SnakeGame\Components\Food.cpp(38,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\CS435\SnakeGame\SnakeGame\Components\Food.cpp(39,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  SnakeGame.vcxproj -> D:\CS435\SnakeGame\x64\Debug\SnakeGame.exe

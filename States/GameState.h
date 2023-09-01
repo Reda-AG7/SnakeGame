@@ -5,6 +5,8 @@
 #include "PauseState.h"
 #include "../Components/Snake.h"
 #include "../Components/Food.h"
+#include "GameOverState.h"
+
 
 class GameState : public State{
 	private:
@@ -14,14 +16,14 @@ class GameState : public State{
 		Text* scoreText;
 		Button* pause;
 		unsigned seconds, minutes;
-		std::chrono::steady_clock::time_point startTime, currentTime;
+		std::chrono::steady_clock::time_point startTime, currentTime, pausedTime;
 
 		sf::RectangleShape* gameBoard;
 		Snake* player;
 		sf::Keyboard::Key k;
 
 		Food* food;
-		bool validKeyPressed;
+		//bool validKeyPressed;
 
 	public:
 		GameState(sf::RenderWindow&, std::stack<State*>&);

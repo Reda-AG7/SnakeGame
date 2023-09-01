@@ -17,6 +17,8 @@ private:
 	float dt;
 	bool verticalSyncEnable;
 	unsigned maxFrames;
+	std::string playerName;
+	sf::Event event;
 	
 public:
 	Game();

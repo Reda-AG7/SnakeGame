@@ -1,6 +1,6 @@
 #ifndef __STATE__H
 #define __STATE__H
-
+#include<filesystem>
 #include "SFML/Graphics.hpp"
 #include<iostream>
 #include<stack>
@@ -18,11 +18,12 @@ protected:
 	std::stack<State*>* states;
 
 public:
-	State();
+
 	State(sf::RenderWindow&, std::stack<State*>&);
 	virtual ~State();
 	virtual void update(float&) = 0;
 	virtual void render(sf::RenderTarget&) = 0;
+	virtual void setPlayerName(const std::string&);
 };
 
 

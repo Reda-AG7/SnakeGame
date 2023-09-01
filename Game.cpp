@@ -4,6 +4,7 @@ Game::Game()
 {
 	initWindow();
 	initState();
+	playerName = "";
 }
 
 Game::~Game()
@@ -17,14 +18,21 @@ Game::~Game()
 
 void Game::updateEvents()
 {
-	sf::Event event;
 	while (window->pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed) {
 			window->close();
 			exit(EXIT_SUCCESS);
 		}
-	}
+		if (event.type == sf::Event::TextEntered && states.size() == 3) {
+			if (event.text.unicode ==8 && playerName.length() > 0) playerName.pop_back();
+			else if (((event.text.unicode >= 65 && event.text.unicode <= 90) ||
+				(event.text.unicode >= 97 && event.text.unicode <= 122)) && playerName.length() < 8) {
+				 playerName += toupper((char)event.text.unicode);
+				 states.top()->setPlayerName(playerName);
+			}
+		}
+	}	
 }
 
 void Game::update(float dt)
@@ -33,6 +41,8 @@ void Game::update(float dt)
 	if (!states.empty())
 		states.top()->update(dt);
 	else exit(EXIT_SUCCESS);
+	//Update player's Name
+	if (states.size() < 3) playerName = "";
 }
 
 void Game::render()

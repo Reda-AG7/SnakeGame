@@ -3,7 +3,7 @@
 MainState::MainState(sf::RenderWindow& window, std::stack<State*>& states)
 	: State(window, states)
 {
-	bestScore = "Record\nUnkown: 000";
+	bestScore = "Record\nUnkown: 0";
 	width = window.getSize().x;
 	height = window.getSize().y;
 
@@ -16,7 +16,7 @@ MainState::MainState(sf::RenderWindow& window, std::stack<State*>& states)
 	//Init Buttons
 	initButtons();
 	initRecord();
-	scoreText = new Text(100.0f, 50.0f, bestScore, regularTextFont, 25u, sf::Color::White);
+	scoreText = new Text(100.0f, 120.0f, bestScore, regularTextFont, 25u, sf::Color::White);
 }
 
 MainState::~MainState()
@@ -38,6 +38,7 @@ void MainState::update(float& dt)
 	if (quitButton->buttonPressed()) {
 		states->pop();
 	}
+	scoreText->update(dt);
 }
 
 void MainState::render(sf::RenderTarget& target)
@@ -58,15 +59,26 @@ void MainState::initButtons()
 
 void MainState::initRecord()
 {
-	std::fstream* fObj = new std::fstream();
-	fObj->open("record.ini");
-	if (fObj->is_open()) {
-		std::getline(*fObj, bestScore);
-		fObj->close();
-		delete fObj;
+	std::fstream fObj;
+	fObj.open("Config/bestRecord.ini", std::ios::in);
+	if (fObj.is_open()) {
+		std::string scorer = "";
+		unsigned sc = 0;
+		while (!fObj.eof() && records.size()<3) {
+			fObj >> scorer;
+			fObj >> sc;
+			records.push_back(std::make_pair(scorer, sc));
+		}
+		fObj.close();
+
+		std::string line = "Best Records\n";
+		for (const auto& rec : records)
+			line += rec.first + " " + std::to_string(rec.second) + "\n";
+		bestScore = line;
 	}
 	else {
 		std::cout << "File couldn't be opened\n";
+		std::cout << std::filesystem::current_path() << std::endl;
 		//exit(EXIT_FAILURE);
 	}
 }

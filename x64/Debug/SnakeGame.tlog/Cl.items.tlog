@@ -3,8 +3,10 @@ D:\CS435\SnakeGame\SnakeGame\Components\Button.cpp;D:\CS435\SnakeGame\SnakeGame\
 D:\CS435\SnakeGame\SnakeGame\Components\Food.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\Food.obj
 D:\CS435\SnakeGame\SnakeGame\Game.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\Game.obj
 D:\CS435\SnakeGame\SnakeGame\Components\Snake.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\Snake.obj
+D:\CS435\SnakeGame\SnakeGame\States\GameOverState.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\GameOverState.obj
 D:\CS435\SnakeGame\SnakeGame\States\PauseState.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\PauseState.obj
 D:\CS435\SnakeGame\SnakeGame\States\GameState.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\GameState.obj
 D:\CS435\SnakeGame\SnakeGame\States\MainState.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\MainState.obj
 D:\CS435\SnakeGame\SnakeGame\States\State.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\State.obj
 D:\CS435\SnakeGame\SnakeGame\Components\Text.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\Text.obj
+D:\CS435\SnakeGame\SnakeGame\Components\TextBox.cpp;D:\CS435\SnakeGame\SnakeGame\x64\Debug\TextBox.obj

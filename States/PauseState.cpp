@@ -26,6 +26,8 @@ void PauseState::update(float& dt)
 	resume->update(dt, mousPosition);
 	if (resume->buttonPressed())
 		states->pop();
+	
+		
 	quit->update(dt, mousPosition);
 	if (quit->buttonPressed()) {
 		while (!states->empty()) {

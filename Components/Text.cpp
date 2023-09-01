@@ -23,6 +23,9 @@ void Text::update(float& dt)
 {
 	
 	text.setString(content);
+	sf::FloatRect textRec = text.getLocalBounds();
+	text.setOrigin(textRec.left + textRec.width / 2.0f, textRec.top + textRec.height / 2.0f);
+	text.setPosition(sf::Vector2f(pos_x, pos_y));
 	//std::cout << content << std::endl;
 }
 

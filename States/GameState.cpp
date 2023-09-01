@@ -14,7 +14,7 @@ GameState::GameState(sf::RenderWindow& window, std::stack<State*>& states) : Sta
 	//Time
 	seconds = 0u;
 	minutes = 0u;
-	startTime = currentTime = std::chrono::steady_clock::now();
+	startTime = currentTime = pausedTime = std::chrono::steady_clock::now();
 
 	//GameBoard
 	initGameBoard();
@@ -22,7 +22,7 @@ GameState::GameState(sf::RenderWindow& window, std::stack<State*>& states) : Sta
 	player = new Snake(gameBoard->getGlobalBounds().width, gameBoard->getGlobalBounds().height, *gameBoard);
 	k = sf::Keyboard::D;
 
-	validKeyPressed = false;
+	//validKeyPressed = false;
 	food = new Food(gameBoard->getLocalBounds().width, gameBoard->getLocalBounds().height);
 }
 
@@ -38,28 +38,40 @@ GameState::~GameState()
 
 void GameState::update(float& dt)
 {
-	//Time
-	updateTime();
-	time->update(dt);
+	
 	
 	pause->update(dt, sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y));
+	
+	//Pause state
 	if (pause->buttonPressed()) {
 		// present another state ... 
+		pausedTime = std::chrono::steady_clock::now();
 		states->push(new PauseState(*window, *states));
 	}
-	updateKeyboard();
-	player->update(dt, k, food->getFoodLocation());
-	//std::cout << food->getFoodLocation().x << "," << food->getFoodLocation().y << std::endl;
-	//if (player->getIsCollided()) {
-		//GameOver
-		//throw("Game Over");
-	//}
-	if (player->getIsEaten()) {
-		//increase the size of the snake
-		player->growingSnake(k);
-		//update the position of the food
-		food->updatePosition();
+	else {
+		//Time
+		updateTime();
+		time->update(dt);
+		updateKeyboard();
+		player->update(dt, k, food->getFoodLocation());
+		//std::cout << food->getFoodLocation().x << "," << food->getFoodLocation().y << std::endl;
+		if (player->getIsCollided()) {
+			//GameOver
+			states->push(new GameOverState(*window, *states, score));
+		}
+		else if (player->getIsEaten()) {
+			//increase the size of the snake
+			player->growingSnake(k);
+			//update the position of the food
+			food->updatePosition();
+
+			score++;
+			std::string temp = "Score: " + std::to_string(score);
+			scoreText->setContent(temp);
+			scoreText->update(dt);
+		}
 	}
+	
 	
 }
 

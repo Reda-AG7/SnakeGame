@@ -1,5 +1,6 @@
 #pragma once
 #include "State.h"
+#include<chrono>
 #include "../Components/Button.h"
 
 class PauseState :

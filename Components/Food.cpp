@@ -5,8 +5,8 @@ Food::Food(float boardWidth, float boardHeight)
 	this->boardHeight = boardHeight;
 	this->boardWidth = boardWidth;
 	food = new sf::RectangleShape(sf::Vector2f(10.0f, 10.0f));
-	float xLocation = 5;
-	float yLocation = 100;
+	float xLocation = 5 + (rand() % (int)(boardWidth / 10 - 5)) * 10;
+	float yLocation = 110 + (rand() % (int)((boardHeight - 110) / 10)) * 10;
 	foodLocation.x = xLocation;
 	foodLocation.y = yLocation;
 	//std::cout << xLocation << "," << yLocation << std::endl;

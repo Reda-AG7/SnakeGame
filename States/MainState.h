@@ -16,6 +16,8 @@ private:
     Button* quitButton;
     
     std::string bestScore;
+
+    std::vector<std::pair<std::string, unsigned>> records;
 public:
     MainState(sf::RenderWindow&, std::stack<State*>&);
     ~MainState();

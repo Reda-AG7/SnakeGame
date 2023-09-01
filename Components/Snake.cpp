@@ -56,7 +56,6 @@ void Snake::update(float& dt, sf::Keyboard::Key& k, const sf::Vector2f& foodLoca
 		foodIsEaten(foodLocation);
 		it2++;
 		it++;
-		std::cout << snake.back()->getPosition().x << "," << snake.back()->getPosition().y << std::endl;
 	}
 	
 }
@@ -82,11 +81,6 @@ bool Snake::getIsCollided() const {
 
 void Snake::foodIsEaten(const sf::Vector2f& foodLocation)
 {
-	if (foodLocation == snake.back()->getPosition()) {
-		std::cout << "Food location : " << foodLocation.x << "," << foodLocation.y << std::endl;
-		std::cout << "back location : " << snake.back()->getPosition().x << "," << snake.back()->getPosition().y << std::endl;
-	}
-	
 	isEaten = (snake.back()->getPosition() == foodLocation) ? true : false;
 }
 
